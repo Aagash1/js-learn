@@ -7,13 +7,18 @@ form.addEventListener("submit", (event) => {
        alert("Username cannot be empty.");
     } else {
        alert(`Form submitted! Welcome, ${username}`);
-       localStorage.setItem('username',username); 
-       console.log(localStorage.getItem('username'));
+       const user={
+         username,
+         plan:true
+       }
+
+       localStorage.setItem('user',JSON.stringify(user)); 
+       console.log(localStorage.getItem('user'));
     }
 });
 // mouse events cick,mouseover,mouseout
 document.getElementById("logout").addEventListener("click",()=>{
-    localStorage.removeItem("username");
+    localStorage.removeItem("user");
 })
 //load event
  window.addEventListener("load", () => {
@@ -48,5 +53,13 @@ document.getElementById("stop").addEventListener("click",()=>{
     console.log('Geolocation is not supported by this browser.');
   }
  
-
-  
+document.getElementById("show-user").addEventListener("click",()=>{
+   const userJSON = localStorage.getItem("user");           
+   if (userJSON) {
+       const user = JSON.parse(userJSON);
+       document.getElementById("user-info").innerText=user.username;
+   } else {
+      document.getElementById("user-info").innerText="";
+       alert("No user data found!");
+   }
+})
