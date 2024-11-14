@@ -111,7 +111,9 @@ Employee.prototype.greet=function(){
 const user1=new Employee("ab");
 const user2=new Employee("bc");
 
-user2.greet();
+function display(...users){
+    users.forEach(user=>user.greet());
+}
 
-
+display(user1,user2);
 
