@@ -87,7 +87,7 @@ for (let key in user) {
 
 //function expression - function not hoisted
 const isMinor=function(age,validAge=18){
-    return age>=validAge;
+    return age<validAge;
 }
 
 isMajor(user.age);
