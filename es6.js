@@ -1,7 +1,5 @@
 //helper methods
 
-
-
 async function getUsers(){
     const userData=await fetch("https://jsonplaceholder.typicode.com/users");
     const users=await userData.json();
@@ -24,4 +22,25 @@ const anyAvailable = items.some(item => item.inStock);
 console.log(allAvailable,anyAvailable);
 
 
-//
+//closure 
+function createBankAccount(accountHolder) {
+    let balance = 0; 
+    return {
+        checkBalance: function() {
+            console.log(`Account Holder: ${accountHolder}, Balance: $${balance}`);
+            return balance;
+        },
+
+        deposit: function(amount) {
+            if (amount > 0) {
+                balance += amount;
+                console.log(`Deposited $${amount}. New Balance: $${balance}`);
+            } else {
+                console.log("Deposit amount must be positive.");
+            }
+        }
+    };
+}
+
+export const myAccount = createBankAccount("Alice");
+                     

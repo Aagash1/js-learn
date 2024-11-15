@@ -1,3 +1,5 @@
+import { myAccount } from './es6.js';
+import './dom.js'; 
 //core js
 
 //variables
@@ -66,7 +68,25 @@ async function fetchUserData(){
         console.log(error);
     }
 }
-
+// by using promise
+function fetchData() {
+    fetch("https://jsonplaceholder.typicode.com/users/1")
+      .then((response) => {
+        if (!response.ok) {
+           throw new Error(`error , status code ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+  
+  fetchData();
+  
 
 // loops
 
@@ -117,3 +137,6 @@ function display(...users){
 
 display(user1,user2);
 
+//import 
+myAccount.deposit(1000);
+myAccount.checkBalance();
