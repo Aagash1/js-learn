@@ -85,8 +85,37 @@ function fetchData() {
       });
   }
   
-  fetchData();
+fetchData();
   
+//xhr call
+
+const button = document.getElementById("show-user-xhr");
+const userDataContainer = document.getElementById("user-info-xhr");
+
+function fetchDataAndUpdateDOM() {
+    const xhr = new XMLHttpRequest();
+    const url = "https://jsonplaceholder.typicode.com/users/1"; 
+
+    xhr.open("GET", url, true);
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const user = JSON.parse(xhr.responseText);
+
+            userDataContainer.innerText = user.username;
+        } else {
+            userDataContainer.innerText = `Error fetching data: ${xhr.status} ${xhr.statusText}`;
+        }
+    };
+
+    xhr.onerror = function () {
+        userDataContainer.innerHTML = `Network error occurred.`;
+    };
+
+    xhr.send();
+}
+
+button.addEventListener("click", fetchDataAndUpdateDOM);
 
 // loops
 
